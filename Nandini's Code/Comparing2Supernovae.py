@@ -30,6 +30,8 @@ sn2 = open(sn2name + "_uvotB15.1.dat", "r")
     # sn1 = open(sn1name + "_uvotB15.1_(1).dat", 'r')
     # sn2 = open(sn1name + "_uvotB15.1.dat", "r")
 
+fig, ax = plt.subplots(111)
+
 
 def snphotometrydata(DM, MJDstart, sn):
 
@@ -130,13 +132,12 @@ normalfilters2, nullfilters2 = snphotometrydata(DM2, MJDstart2, sn2)
 sn2.close()
 
 
-plt.figure(1)
-plt.plot(normalfilters1["timeUVW2"], normalfilters1["magUVW2"], color='black', marker='o', markersize='15')
-plt.plot(normalfilters1["timeUVM2"], normalfilters1["magUVM2"], color='red', marker='o', markersize='15')
-plt.plot(normalfilters1["timeUVW1"], normalfilters1["magUVW1"], color='purple', marker='o', markersize='15')
-plt.plot(normalfilters1["timeU"], normalfilters1["magU"], color='orange', marker='o', markersize='15')
-plt.plot(normalfilters1["timeB"], normalfilters1["magB"], color='blue', marker='o', markersize='15')
-plt.plot(normalfilters1["timeV"], normalfilters1["magV"], color='green', marker='o', markersize='15')
+plt.plot(normalfilters1["timeUVW2"], normalfilters1["magUVW2"], color='black', marker='o', markersize='15', label=sn1name + ' UVW2 band')
+plt.plot(normalfilters1["timeUVM2"], normalfilters1["magUVM2"], color='red', marker='o', markersize='15', label=sn1name + ' UVM2 band')
+plt.plot(normalfilters1["timeUVW1"], normalfilters1["magUVW1"], color='purple', marker='o', markersize='15', label=sn1name + ' UVW1 band')
+plt.plot(normalfilters1["timeU"], normalfilters1["magU"], color='orange', marker='o', markersize='15', label=sn1name + ' U band')
+plt.plot(normalfilters1["timeB"], normalfilters1["magB"], color='blue', marker='o', markersize='15', label=sn1name + ' B band')
+plt.plot(normalfilters1["timeV"], normalfilters1["magV"], color='green', marker='o', markersize='15', label=sn1name + ' V band')
 plt.scatter(nullfilters1["timeUVW2null"], nullfilters1["magUVW2null"], s=600, color='black', marker='v')
 plt.scatter(nullfilters1["timeUVM2null"], nullfilters1["magUVM2null"], s=600, color='red', marker='v')
 plt.scatter(nullfilters1["timeUVW1null"], nullfilters1["magUVW1null"], s=600, color='purple', marker='v')
@@ -144,12 +145,12 @@ plt.scatter(nullfilters1["timeUnull"], nullfilters1["magUnull"], s=600, color='o
 plt.scatter(nullfilters1["timeBnull"], nullfilters1["magBnull"], s=600, color='blue', marker='v')
 plt.scatter(nullfilters1["timeVnull"], nullfilters1["magVnull"], s=600, color='green', marker='v')
 
-plt.plot(normalfilters2["timeUVW2"], normalfilters2["magUVW2"], color='#ababab', marker='*', markersize='15')
-plt.plot(normalfilters2["timeUVM2"], normalfilters2["magUVM2"], color='#f59fa6', marker='*', markersize='15')
-plt.plot(normalfilters2["timeUVW1"], normalfilters2["magUVW1"], color='#b991cc', marker='*', markersize='15')
-plt.plot(normalfilters2["timeU"], normalfilters2["magU"], color='#e8a561', marker='*', markersize='15')
-plt.plot(normalfilters2["timeB"], normalfilters2["magB"], color='#95d8e6', marker='*', markersize='15')
-plt.plot(normalfilters2["timeV"], normalfilters2["magV"], color='#9ccc54', marker='*', markersize='15')
+plt.plot(normalfilters2["timeUVW2"], normalfilters2["magUVW2"], color='#ababab', marker='*', markersize='15', label=sn2name + ' UVW2 band')
+plt.plot(normalfilters2["timeUVM2"], normalfilters2["magUVM2"], color='#f59fa6', marker='*', markersize='15', label=sn2name + ' UVM2 band')
+plt.plot(normalfilters2["timeUVW1"], normalfilters2["magUVW1"], color='#b991cc', marker='*', markersize='15', label=sn2name + ' UVW1 band')
+plt.plot(normalfilters2["timeU"], normalfilters2["magU"], color='#e8a561', marker='*', markersize='15', label=sn2name + ' U band')
+plt.plot(normalfilters2["timeB"], normalfilters2["magB"], color='#95d8e6', marker='*', markersize='15', label=sn2name + ' B band')
+plt.plot(normalfilters2["timeV"], normalfilters2["magV"], color='#9ccc54', marker='*', markersize='15', label=sn2name + ' V band')
 plt.scatter(nullfilters2["timeUVW2null"], nullfilters2["magUVW2null"], s=600, color='#ababab', marker='v')
 plt.scatter(nullfilters2["timeUVM2null"], nullfilters2["magUVM2null"], s=600, color='#f59fa6', marker='v')
 plt.scatter(nullfilters2["timeUVW1null"], nullfilters2["magUVW1null"], s=600, color='#b991cc', marker='v')
@@ -173,4 +174,7 @@ sn2_bband = mlines.Line2D([], [], color='#95d8e6', marker='*', markersize=10, la
 sn2_vband = mlines.Line2D([], [], color='#9ccc54', marker='*', markersize=10, label=sn2name + ' V band')
 
 plt.legend(handles=[sn1_uvw2band, sn1_uvm2band, sn1_uvw1band, sn1_uband, sn1_bband, sn1_vband, sn2_uvw2band, sn2_uvm2band, sn2_uvw1band, sn2_uband, sn2_bband, sn2_vband], fontsize='20')
+
+#handles, labels=ax.get_legend_handles_labels()
+#plt.legend(handles, labels, bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0.)
 plt.show()
